@@ -26,6 +26,7 @@ let q7Choice3 = document.querySelector("#q7Choice3");
 let q7Choice4 = document.querySelector("#q7Choice4");
 
 let resultBtn = document.querySelector("#resultBtn");
+let resultContainer = document.querySelector("#resultContainer");
 
 let score = 0;
 let questionsAnswered = true;
@@ -33,10 +34,10 @@ let questionsAnswered = true;
 //Check true or false questions
 let checkAnswer = (choice1, choice2) => {
   if (choice1.checked) {
-    console.log("Correct choice!");
+    console.log("Correct!");
     score++;
   } else if (choice2.checked) {
-    console.log("WROOOONG");
+    console.log("Wrong!");
   } else {
     console.log("Please choose an answer!");
     questionsAnswered = false;
@@ -46,10 +47,10 @@ let checkAnswer = (choice1, choice2) => {
 //Check questions with 3 choices
 let check3Answers = (choice1, choice2, choice3) => {
   if(choice1.checked) {
-    console.log("Correct answer!");
+    console.log("Correct!");
     score++;
   } else if(choice2.checked || choice3.checked) {
-    console.log("WRONG ANSWER");
+    console.log("Wrong!");
   } else {
     console.log("Please choose an answer!")
     questionsAnswered = false;
@@ -58,10 +59,22 @@ let check3Answers = (choice1, choice2, choice3) => {
 
 //Check question with multiple answers
 let checkMultipleAnswers = (choice1, choice2, choice3, choice4) => {
+  if(choice1.checked && choice2.checked && !choice3.checked && !choice4.checked) {
+    console.log("Correct!!");
+    score++;
+  } else if(choice1.checked || choice2.checked || choice3.checked || choice4.checked) {
+    console.log("Wrong!");
+  } else {
+    console.log("Please choose an answer!")
+    questionsAnswered = false;
+  }
 
 };
 
 resultBtn.addEventListener("click", () => {
+  let resultMessage = document.createElement("h2");
+  resultMessage.style.color = "black";
+  resultContainer.innerHTML = "";
   score = 0;
   questionsAnswered = true;
 
@@ -84,11 +97,27 @@ resultBtn.addEventListener("click", () => {
   //Question 6 - true or false
   checkAnswer(q6ChoiceTrue, q6ChoiceFalse);
 
-  //Question 7 - multiple answers
-  checkMultipleAnswers();
+  //Question 7 - multiple answers (first and second argument is the correct choice)
+  checkMultipleAnswers(q7Choice2, q7Choice3, q7Choice1, q7Choice4);
 
+  //Append results if all questions are answered
   if(questionsAnswered === false){
-      console.log("Please answer all the questions!");
+      resultMessage.textContent = "Please answer all the questions!";
+      resultContainer.appendChild(resultMessage);
+  } else if(questionsAnswered === true){
+    if(score === 7){
+      resultMessage.style.color = "green";
+      resultMessage.textContent = `You had ${score} out of 7 correct answers!`
+      resultContainer.appendChild(resultMessage);
+    } else if(score >= 4){
+      resultMessage.style.color = "orange";
+      resultMessage.textContent = `You had ${score} out of 7 correct answers!`
+      resultContainer.appendChild(resultMessage);
+    } else if(score <= 3){
+      resultMessage.style.color = "red";
+      resultMessage.textContent = `You had ${score} out of 7 correct answers!`
+      resultContainer.appendChild(resultMessage);
+    }
   }
 
   console.log(score);
