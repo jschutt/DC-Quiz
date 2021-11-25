@@ -1,9 +1,14 @@
 body {
     font-family: sans-serif;
+    width: 75%;
+    margin: auto;
+    text-align: center;
+    background-color: pink;
 }
 
 h2 {
     margin: 24px 0 5px 0; 
+    
 }
 
 h3 {
@@ -12,4 +17,14 @@ h3 {
 
 label {
     font-size: 18px;
+}
+
+/*Darkmode properties*/
+.darkMode {
+    background-color: #282f38;
+    color: #c6ced8;
+}
+
+.darkH2 {
+    color: green;
 }

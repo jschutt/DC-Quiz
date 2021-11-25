@@ -28,6 +28,14 @@ let q7Choice4 = document.querySelector("#q7Choice4");
 let resultBtn = document.querySelector("#resultBtn");
 let resultContainer = document.querySelector("#resultContainer");
 
+//Variables for dark/light mode
+let modeBtn = document.querySelector("#modeBtn");
+let allH1 = document.querySelectorAll("h1");
+let allH2 = document.querySelectorAll("h2");
+let allH3 = document.querySelectorAll("h3");
+let allLabels = document.querySelectorAll("label");
+let darkMode = false;
+
 let score = 0;
 let questionsAnswered = true;
 
@@ -119,6 +127,44 @@ resultBtn.addEventListener("click", () => {
       resultContainer.appendChild(resultMessage);
     }
   }
-
   console.log(score);
 });
+
+//darkmode toggle function
+// let changeMode = () => {
+//   let bodyBG = document.body.backgroundColor;
+//   bodyBG.classList.toggle("darkMode");
+//   allH2.classList.toggle("darkH2");
+// };
+
+
+// modeBtn.addEventListener("click", (() => {
+//   changeMode();
+// }));
+
+//Function to change color for specific headings etc
+let colorChange = (element, color) => {
+  element.forEach((item) => {
+    item.style.color = color;
+  });
+};
+
+modeBtn.addEventListener("click", (() => {
+  if(darkMode === false){
+    colorChange(allH1, "#c6ced8");
+    colorChange(allH2, "#c6ced8");
+    colorChange(allH3, "#a1a8b1");
+    colorChange(allLabels, "#a1a8b1");
+    //BG color
+    document.body.style.backgroundColor = "#282f38";
+
+    console.log("Now it's darkmode")
+    darkMode = true;
+  } else if(darkMode){
+    
+    console.log("Now it's lightmode")
+    darkMode = false;
+  }
+
+}));
+
