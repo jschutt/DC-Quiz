@@ -34,6 +34,7 @@ let allH1 = document.querySelectorAll("h1");
 let allH2 = document.querySelectorAll("h2");
 let allH3 = document.querySelectorAll("h3");
 let allLabels = document.querySelectorAll("label");
+let qContainers = document.querySelectorAll(".qContainer");
 let darkMode = false;
 
 let score = 0;
@@ -54,29 +55,38 @@ let checkAnswer = (choice1, choice2) => {
 
 //Check questions with 3 choices
 let check3Answers = (choice1, choice2, choice3) => {
-  if(choice1.checked) {
+  if (choice1.checked) {
     console.log("Correct!");
     score++;
-  } else if(choice2.checked || choice3.checked) {
+  } else if (choice2.checked || choice3.checked) {
     console.log("Wrong!");
   } else {
-    console.log("Please choose an answer!")
+    console.log("Please choose an answer!");
     questionsAnswered = false;
   }
-}
+};
 
 //Check question with multiple answers
 let checkMultipleAnswers = (choice1, choice2, choice3, choice4) => {
-  if(choice1.checked && choice2.checked && !choice3.checked && !choice4.checked) {
+  if (
+    choice1.checked &&
+    choice2.checked &&
+    !choice3.checked &&
+    !choice4.checked
+  ) {
     console.log("Correct!!");
     score++;
-  } else if(choice1.checked || choice2.checked || choice3.checked || choice4.checked) {
+  } else if (
+    choice1.checked ||
+    choice2.checked ||
+    choice3.checked ||
+    choice4.checked
+  ) {
     console.log("Wrong!");
   } else {
-    console.log("Please choose an answer!")
+    console.log("Please choose an answer!");
     questionsAnswered = false;
   }
-
 };
 
 resultBtn.addEventListener("click", () => {
@@ -109,62 +119,72 @@ resultBtn.addEventListener("click", () => {
   checkMultipleAnswers(q7Choice2, q7Choice3, q7Choice1, q7Choice4);
 
   //Append results if all questions are answered
-  if(questionsAnswered === false){
-      resultMessage.textContent = "Please answer all the questions!";
-      resultContainer.appendChild(resultMessage);
-  } else if(questionsAnswered === true){
-    if(score === 7){
+  if (questionsAnswered === false) {
+    resultMessage.textContent = "Please answer all the questions!";
+    resultContainer.appendChild(resultMessage);
+  } else if (questionsAnswered === true) {
+    if (score === 7) {
       resultMessage.style.color = "green";
-      resultMessage.textContent = `You had ${score} out of 7 correct answers!`
+      resultMessage.textContent = `You had ${score} out of 7 correct answers!`;
       resultContainer.appendChild(resultMessage);
-    } else if(score >= 4){
+    } else if (score >= 4) {
       resultMessage.style.color = "orange";
-      resultMessage.textContent = `You had ${score} out of 7 correct answers!`
+      resultMessage.textContent = `You had ${score} out of 7 correct answers!`;
       resultContainer.appendChild(resultMessage);
-    } else if(score <= 3){
+    } else if (score <= 3) {
       resultMessage.style.color = "red";
-      resultMessage.textContent = `You had ${score} out of 7 correct answers!`
+      resultMessage.textContent = `You had ${score} out of 7 correct answers!`;
       resultContainer.appendChild(resultMessage);
     }
   }
   console.log(score);
 });
 
-//darkmode toggle function
-// let changeMode = () => {
-//   let bodyBG = document.body.backgroundColor;
-//   bodyBG.classList.toggle("darkMode");
-//   allH2.classList.toggle("darkH2");
-// };
-
-
-// modeBtn.addEventListener("click", (() => {
-//   changeMode();
-// }));
-
-//Function to change color for specific headings etc
-let colorChange = (element, color) => {
-  element.forEach((item) => {
-    item.style.color = color;
+//Function to toggle each element to a different CSS class property
+let eachItem = (item, classProperty) => {
+  item.forEach((heading) => {
+    heading.classList.toggle(classProperty);
   });
 };
 
-modeBtn.addEventListener("click", (() => {
-  if(darkMode === false){
-    colorChange(allH1, "#c6ced8");
-    colorChange(allH2, "#c6ced8");
-    colorChange(allH3, "#a1a8b1");
-    colorChange(allLabels, "#a1a8b1");
-    //BG color
-    document.body.style.backgroundColor = "#282f38";
+//Darkmode toggle function
+let changeMode = () => {
+  let bodyBG = document.body;
+  bodyBG.classList.toggle("darkMode");
 
-    console.log("Now it's darkmode")
-    darkMode = true;
-  } else if(darkMode){
-    
-    console.log("Now it's lightmode")
-    darkMode = false;
-  }
+  eachItem(allH2, "darkH2");
+  eachItem(allH3, "darkH3");
+  eachItem(allLabels, "darkLabels");
+  eachItem(qContainers, "qDarkContainer");
 
-}));
+};
 
+modeBtn.addEventListener("click", () => {
+  changeMode();
+});
+
+//Function to change color for specific headings etc
+// let colorChange = (element, color) => {
+//   element.forEach((item) => {
+//     item.style.color = color;
+//   });
+// };
+
+// modeBtn.addEventListener("click", (() => {
+//   if(darkMode === false){
+//     colorChange(allH1, "#c6ced8");
+//     colorChange(allH2, "#c6ced8");
+//     colorChange(allH3, "#a1a8b1");
+//     colorChange(allLabels, "#a1a8b1");
+//     //BG color
+//     document.body.style.backgroundColor = "#282f38";
+
+//     console.log("Now it's darkmode")
+//     darkMode = true;
+//   } else if(darkMode){
+
+//     console.log("Now it's lightmode")
+//     darkMode = false;
+//   }
+
+// }));

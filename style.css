@@ -1,14 +1,15 @@
 body {
     font-family: sans-serif;
-    width: 75%;
+    width: 880px;
     margin: auto;
     text-align: center;
-    background-color: pink;
+    background-color: #d9e1e9;
+    color: #3a4450;
 }
 
 h2 {
     margin: 24px 0 5px 0; 
-    
+    color: #3a4450;
 }
 
 h3 {
@@ -19,12 +20,29 @@ label {
     font-size: 18px;
 }
 
-/*Darkmode properties*/
+.qContainer {
+    background-color: #ecf1f7;
+    border-radius: 10px;
+}
+
+/*Dark-mode properties*/
 .darkMode {
     background-color: #282f38;
     color: #c6ced8;
 }
 
+.qDarkContainer {
+    background-color: #3a4450;
+}
+
 .darkH2 {
-    color: green;
+    color: #d9e1e9;
+}
+
+.darkH3 {
+    color: #c6ced8;
+}
+
+.darkLabels {
+    color: #c6ced8;
 }
