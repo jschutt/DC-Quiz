@@ -26,7 +26,7 @@ let q7Choice3 = document.querySelector("#q7Choice3");
 let q7Choice4 = document.querySelector("#q7Choice4");
 
 let resultBtn = document.querySelector("#resultBtn");
-let resultContainer = document.querySelector("#resultContainer");
+let resultContainer = document.querySelector(".resultContainer");
 
 //Variables for dark/light mode
 let modeBtn = document.querySelector("#modeBtn");
@@ -35,7 +35,6 @@ let allH2 = document.querySelectorAll("h2");
 let allH3 = document.querySelectorAll("h3");
 let allLabels = document.querySelectorAll("label");
 let qContainers = document.querySelectorAll(".qContainer");
-let darkMode = false;
 
 let score = 0;
 let questionsAnswered = true;
@@ -91,8 +90,9 @@ let checkMultipleAnswers = (choice1, choice2, choice3, choice4) => {
 
 resultBtn.addEventListener("click", () => {
   let resultMessage = document.createElement("h3");
-  resultMessage.style.color = "black";
+  resultMessage.style.color = "#cf2828";
   resultContainer.innerHTML = "";
+  resultContainer.style.display = "block";
   score = 0;
   questionsAnswered = true;
 
@@ -124,26 +124,28 @@ resultBtn.addEventListener("click", () => {
     resultContainer.appendChild(resultMessage);
   } else if (questionsAnswered === true) {
     if (score === 7) {
-      resultMessage.style.color = "green";
+      resultMessage.style.color = "#53cf28";
       resultMessage.textContent = `You had ${score} out of 7 correct answers!`;
       resultContainer.appendChild(resultMessage);
     } else if (score >= 4) {
-      resultMessage.style.color = "orange";
+      resultMessage.style.color = "#cf9628";
       resultMessage.textContent = `You had ${score} out of 7 correct answers!`;
       resultContainer.appendChild(resultMessage);
     } else if (score <= 3) {
-      resultMessage.style.color = "red";
+      resultMessage.style.color = "#cf2828";
       resultMessage.textContent = `You had ${score} out of 7 correct answers!`;
       resultContainer.appendChild(resultMessage);
     }
   }
+  //Scroll to bottom after results have been appended
+  window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
   console.log(score);
 });
 
 //Function to toggle each element to a different CSS class property
 let eachItem = (item, classProperty) => {
-  item.forEach((heading) => {
-    heading.classList.toggle(classProperty);
+  item.forEach((element) => {
+    element.classList.toggle(classProperty);
   });
 };
 
@@ -151,6 +153,10 @@ let eachItem = (item, classProperty) => {
 let changeMode = () => {
   let bodyBG = document.body;
   bodyBG.classList.toggle("darkMode");
+
+  resultContainer.classList.toggle("darkResultContainer");
+  resultBtn.classList.toggle("darkBtn");
+  modeBtn.classList.toggle("darkBtn");
 
   eachItem(allH2, "darkH2");
   eachItem(allH3, "darkH3");
@@ -162,29 +168,3 @@ let changeMode = () => {
 modeBtn.addEventListener("click", () => {
   changeMode();
 });
-
-//Function to change color for specific headings etc
-// let colorChange = (element, color) => {
-//   element.forEach((item) => {
-//     item.style.color = color;
-//   });
-// };
-
-// modeBtn.addEventListener("click", (() => {
-//   if(darkMode === false){
-//     colorChange(allH1, "#c6ced8");
-//     colorChange(allH2, "#c6ced8");
-//     colorChange(allH3, "#a1a8b1");
-//     colorChange(allLabels, "#a1a8b1");
-//     //BG color
-//     document.body.style.backgroundColor = "#282f38";
-
-//     console.log("Now it's darkmode")
-//     darkMode = true;
-//   } else if(darkMode){
-
-//     console.log("Now it's lightmode")
-//     darkMode = false;
-//   }
-
-// }));
