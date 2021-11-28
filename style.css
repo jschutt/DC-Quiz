@@ -1,5 +1,5 @@
 body {
-    font-family: sans-serif;
+    font-family: "Segoe UI";
     width: 880px;
     margin: auto;
     text-align: center;
@@ -10,10 +10,12 @@ body {
 h2 {
     margin: 24px 0 5px 0; 
     color: #3a4450;
+    display: none;
 }
 
 h3 {
     margin: 8px 0 8px 0;
+    font-size: 22px;
 }
 
 label {
@@ -23,7 +25,52 @@ label {
 .qContainer {
     background-color: #ecf1f7;
     border-radius: 10px;
+    margin: 15px 0px 15px 0px;
+    padding-bottom: 15px;
+    height: auto;
 }
+
+/* .imgContainer {
+    height: 300px;
+    background-color: pink;
+} */
+
+.imgContainer img {
+    width: 95%;
+    height: 300px;
+    margin-top: 20px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.imgPuffin {
+    object-position: 0px 18%;
+}
+
+.imgRooster {
+    object-position: 0px 30%;
+}
+
+.imgOstrich {
+    object-position: 0px 30%;
+}
+
+.imgRhino {
+    object-position: 0px 60%;
+}
+
+.imgFlamingo {
+    object-position: 0px 30%;
+}
+
+.imgBat {
+    object-position: 0px 100%;
+}
+
+.imgCat {
+    object-position: 0px 30%;
+}
+
 
 /*Dark-mode properties*/
 .darkMode {

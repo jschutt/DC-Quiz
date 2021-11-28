@@ -90,7 +90,7 @@ let checkMultipleAnswers = (choice1, choice2, choice3, choice4) => {
 };
 
 resultBtn.addEventListener("click", () => {
-  let resultMessage = document.createElement("h2");
+  let resultMessage = document.createElement("h3");
   resultMessage.style.color = "black";
   resultContainer.innerHTML = "";
   score = 0;
